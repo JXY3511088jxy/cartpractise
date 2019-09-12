@@ -2,11 +2,7 @@ package com.dao;
 
 import com.bean.Product;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +25,7 @@ public class ProductDAO {
 
             String sql = "select * from product where id = ?";
 
-            PreparedStatement ps = c.prepareStatement(sql);
+            PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();

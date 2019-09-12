@@ -2,11 +2,7 @@ package com.dao;
 
 import com.bean.User;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserDAO {
     public static void main(String[] args) {
@@ -26,7 +22,7 @@ public class UserDAO {
 
             String sql = "select * from user where name = ? and password = ?";
 
-            PreparedStatement ps = c.prepareStatement(sql);
+            PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, name);
             ps.setString(2, password);
